@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear Campaña</title>
+  <link rel="stylesheet" href="Css/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Nueva Campaña</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="profile.html">Perfil</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="form-section">
+      <h2>Formulario de Creación</h2>
+      <form class="campaign-form">
+        <label>Título de la Campaña</label>
+        <input type="text" placeholder="Ej. Ayuda a los animales">
+
+        <label>Descripción</label>
+        <textarea placeholder="Describe tu campaña"></textarea>
+
+        <label>Meta ($)</label>
+        <input type="number" placeholder="10000">
+
+        <label>Imagen</label>
+        <input type="file" accept="image/*">
+
+        <label>Categoría</label>
+        <select required>
+          <option value="">Selecciona una categoría</option>
+          <option value="medio-ambiente">Medio Ambiente</option>
+          <option value="educacion">Educación</option>
+          <option value="salud">Ayuda a  los Animales</option>
+          <option value="cultura">Proyectos Comunitarios</option>
+          <option value="nueva-campana">Nueva Campaña</option>
+        </select>
+
+        <label>Fecha de Finalización</label>
+        <input type="date" required>
+
+        <label>Ubicación</label>
+        <input type="text" placeholder="Ciudad, País" required>
+
+        <label>Video (opcional)</label>
+        <input type="url" placeholder="URL del video">
+
+        <button type="submit">Crear Campaña</button>
+      </form>
+    </section>
+  </main>
+  <footer>
+    <p>© 2025 Crowdfunding Platform</p>
+  </footer>
+</body>
+</html>

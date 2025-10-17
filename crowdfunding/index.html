@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crowdfunding - Inicio</title>
+  <link rel="stylesheet" href="assets/css/style-index.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <!-- Logo links back to home -->
+    <a href="index.html" class="logo">Crowdfunding</a>
+
+    <!-- Search bar -->
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar campañas, categorías..." />
+      <button type="submit">🔍</button>
+    </div>
+
+    <!-- Right-side navigation -->
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="pages/create_campaign.html">Antes de anunciarte</a></li>
+        <li><a href="pages/profile.html">Iniciar sesión</a></li>
+        <li><a href="pages/contact.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <h2>Apoya proyectos que cambian el mundo</h2>
+    <p>Descubre campañas solidarias y ayuda a hacerlas realidad.</p>
+    <button class="explore-btn">Explorar Campañas</button>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <section class="campaign-grid">
+      <h2>Campañas Activas</h2>
+
+      <div class="grid-layout">
+        <!-- FEATURED LARGE -->
+        <div class="campaign featured">
+          <div class="image-hover">
+            <img src="assets/img/bosques.png" alt="Salvemos el Bosque">
+            <div class="hover-description">
+              Iniciativa ecológica para proteger y reforestar bosques nativos.
+            </div>
+          </div>
+          <h3>Salvemos el Bosque</h3>
+          <p>Recaudado: $5,000 / $10,000</p>
+          <div class="progress"><div style="width:60%"></div></div>
+          <button>Donar</button>
+        </div>
+
+        <!-- SMALLER 1 -->
+        <div class="campaign small">
+          <div class="image-hover">
+            <img src="assets/img/educa.avif" alt="Educación para Todos">
+            <div class="hover-description">
+              Proporciona materiales y becas a comunidades rurales sin acceso educativo.
+            </div>
+          </div>
+          <h4>Educación para Todos</h4>
+          <p>Recaudado: $7,500 / $10,000</p>
+          <div class="progress"><div style="width:75%"></div></div>
+          <button>Donar</button>
+        </div>
+
+        <!-- SMALLER 2 -->
+        <div class="campaign small">
+          <div class="image-hover">
+            <img src="assets/img/perros.jpg" alt="Ayuda a los Animales">
+            <div class="hover-description">
+              Brinda alimento y refugio a perros y gatos callejeros.
+            </div>
+          </div>
+          <h4>Ayuda a los Animales</h4>
+          <p>Recaudado: $2,500 / $5,000</p>
+          <div class="progress"><div style="width:40%"></div></div>
+          <button>Donar</button>
+        </div>
+
+        <!-- SMALLER 3 -->
+        <div class="campaign small">
+          <div class="image-hover">
+            <img src="assets/img/comu.webp" alt="Proyectos Comunitarios">
+            <div class="hover-description">
+              Apoya el desarrollo de infraestructuras locales y sostenibles.
+            </div>
+          </div>
+          <h4>Proyectos Comunitarios</h4>
+          <p>Recaudado: $9,000 / $15,000</p>
+          <div class="progress"><div style="width:60%"></div></div>
+          <button>Donar</button>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <a href="#" class="page-arrow">&lt;</a>
+        <a href="#" class="page-number active">1</a>
+        <a href="#" class="page-number">2</a>
+        <a href="#" class="page-number">3</a>
+        <a href="#" class="page-arrow">&gt;</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Crowdfunding Platform</p>
+  </footer>
+</body>
+</html>
