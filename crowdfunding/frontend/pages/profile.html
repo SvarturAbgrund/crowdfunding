@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro / Inicio de Sesión</title>
+  <link rel="stylesheet" href="../assets/css/style-index.css">
+  <script src="../js/auth.js" defer></script>
+</head>
+<body>
+  <form id="registerForm">
+    <h3>Registro</h3>
+    <label>Nombre</label>
+    <input type="text" id="nombre" required>
+
+    <label>Email</label>
+    <input type="email" id="email" required>
+
+    <label>Contraseña</label>
+    <input type="password" id="password" required>
+
+    <label>¿Qué eres?</label>
+    <select id="rol" required>
+      <option value="emprendedor">Emprendedor</option>
+      <option value="inversionista">Inversionista</option>
+    </select>
+
+    <button type="submit">Registrar</button>
+  </form>
+
+  <hr>
+
+  <form id="loginForm">
+    <h2>Iniciar Sesión</h2>
+    <input type="email" id="email_login" placeholder="Correo" required>
+    <input type="password" id="password_login" placeholder="Contraseña" required>
+    <button type="submit">Entrar</button>
+  </form>
+</body>
+</html>

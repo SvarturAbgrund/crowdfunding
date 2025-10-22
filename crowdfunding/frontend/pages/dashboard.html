@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mi Perfil</title>
+  <link rel="stylesheet" href="../assets/css/style-index.css">
+  <script src="../js/dashboard.js"></script>
+</head>
+<body>
+  <header class="header">
+    <a href="../index.html" class="logo">Crowdfunding</a>
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="../pages/create_campaign.html">Crear campaña</a></li>
+        <li><button id="logoutBtn">Cerrar sesión</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <h2>Bienvenido a tu Panel</h2>
+    <div id="userInfo"></div>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const userInfoDiv = document.getElementById("userInfo");
+
+      if (!user) {
+        alert("Por favor inicia sesión.");
+        window.location.href = "profile.html";
+        return;
+      }
+
+      userInfoDiv.innerHTML = `
+        <p><strong>Nombre:</strong> ${user.nombre}</p>
+        <p><strong>Rol:</strong> ${user.rol}</p>
+      `;
+
+      document.getElementById("logoutBtn").addEventListener("click", () => {
+        localStorage.removeItem("user");
+        alert("Sesión cerrada correctamente.");
+        window.location.href = "../index.html";
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear Campaña</title>
+  <link rel="stylesheet" href="../assets/css/style-create.css">
+</head>
+<body>
+  <header>
+    <a href="../index.html" class="logo">Crowdfunding</a>
+  </header>
+
+  <main class="form-container">
+    <h2>Crear Nueva Campaña</h2>
+    <form id="createCampaignForm">
+      <label>Título</label>
+      <input type="text" id="titulo" required>
+
+      <label>Categoría</label>
+      <input type="text" id="categoria" placeholder="Ej. Educación, Tecnología, Salud..." required>
+
+      <label>Descripción</label>
+      <textarea id="descripcion" rows="5" required></textarea>
+
+      <label>Meta (en USD)</label>
+      <input type="number" id="meta" min="1" required>
+
+      <button type="submit">Publicar Campaña</button>
+    </form>
+  </main>
+
+  <script src="../js/utils.js"></script>
+  <script src="../js/campaigns.js"></script>
+</body>
+</html>

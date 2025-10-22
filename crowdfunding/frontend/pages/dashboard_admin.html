@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Administrador</title>
+    <link rel="stylesheet" href="../assets/css/style-index.css">
+</head>
+<body>
+    <header class="header">
+        <a href="../index.html" class="logo">Crowdfunding</a>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="#campaigns">Campañas</a></li>
+                <li><a href="#users">Usuarios</a></li>
+                <li><a href="#" id="logout">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="dashboard">
+        <h1>Panel de Administrador</h1>
+
+        <section id="campaigns" class="admin-section">
+            <h2>Gestión de Campañas</h2>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Creador</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Salvemos el Bosque</td>
+                        <td>Juan Pérez</td>
+                        <td>Pendiente</td>
+                        <td>
+                            <button class="btn approve">Aprobar</button>
+                            <button class="btn reject">Rechazar</button>
+                            <button class="btn delete">Eliminar</button>
+                        </td>
+                    </tr>
+                    <!-- Más campañas... -->
+                </tbody>
+            </table>
+        </section>
+
+        <section id="users" class="admin-section">
+            <h2>Gestión de Usuarios</h2>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Rol</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>María González</td>
+                        <td>maria@email.com</td>
+                        <td>Emprendedor</td>
+                        <td>
+                            <button class="btn edit">Editar</button>
+                            <button class="btn delete">Eliminar</button>
+                        </td>
+                    </tr>
+                    <!-- Más usuarios... -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script>
+        // Mínimo JS necesario
+        document.getElementById('logout').addEventListener('click', () => {
+            localStorage.removeItem('user');
+            window.location.href = '../index.html';
+        });
+    </script>
+</body>
+</html>

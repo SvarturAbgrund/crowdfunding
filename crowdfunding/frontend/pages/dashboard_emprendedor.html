@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Emprendedor</title>
+    <link rel="stylesheet" href="../assets/css/style-index.css">
+</head>
+<body>
+    <header class="header">
+        <a href="../index.html" class="logo">Crowdfunding</a>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="create_campaign.html">Nueva Campaña</a></li>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="#" id="logout">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="dashboard">
+        <h1>Panel de Emprendedor</h1>
+        
+        <section class="stats-overview">
+            <div class="stat-card">
+                <h3>Campañas Activas</h3>
+                <p class="number">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Total Recaudado</h3>
+                <p class="number">$0</p>
+            </div>
+        </section>
+
+        <section class="campaigns-list">
+            <h2>Tus Campañas</h2>
+            <div class="campaign-grid">
+                <!-- Las campañas se cargarán dinámicamente aquí -->
+            </div>
+        </section>
+    </main>
+
+    <script src="../js/dashboard_emprendedor.js"></script>
+    <script>
+        document.getElementById('logout').addEventListener('click', () => {
+            localStorage.removeItem('user');
+            window.location.href = '../index.html';
+        });
+    </script>
+</body>
+</html>

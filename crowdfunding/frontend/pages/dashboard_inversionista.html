@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Inversionista</title>
+    <link rel="stylesheet" href="../assets/css/style-index.css">
+</head>
+<body>
+    <header class="header">
+        <a href="../index.html" class="logo">Crowdfunding</a>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="../index.html#campaigns">Explorar Campañas</a></li>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="#" id="logout">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="dashboard">
+        <h1>Panel de Inversionista</h1>
+        
+        <section class="stats-overview">
+            <div class="stat-card">
+                <h3>Total Donado</h3>
+                <p class="number">$2,500</p>
+            </div>
+            <div class="stat-card">
+                <h3>Campañas Apoyadas</h3>
+                <p class="number">5</p>
+            </div>
+        </section>
+
+        <section class="donations-list">
+            <h2>Tus Donaciones</h2>
+            <table class="donations-table">
+                <thead>
+                    <tr>
+                        <th>Campaña</th>
+                        <th>Fecha</th>
+                        <th>Monto</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Salvemos el Bosque</td>
+                        <td>2025-10-20</td>
+                        <td>$500</td>
+                        <td>Completada</td>
+                    </tr>
+                    <!-- Más donaciones... -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script>
+        // Mínimo JS necesario
+        document.getElementById('logout').addEventListener('click', () => {
+            localStorage.removeItem('user');
+            window.location.href = '../index.html';
+        });
+    </script>
+</body>
+</html>
