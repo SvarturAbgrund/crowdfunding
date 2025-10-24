@@ -18,11 +18,12 @@
     <label>Contraseña</label>
     <input type="password" id="password" required>
 
-    <label>¿Qué eres?</label>
-    <select id="rol" required>
-      <option value="emprendedor">Emprendedor</option>
-      <option value="inversionista">Inversionista</option>
-    </select>
+    <label for="rol">Rol</label>
+<select id="rol" required>
+  <option value="emprendedor">Emprendedor</option>
+  <option value="inversionista">Inversionista</option>
+  <option value="admin">Administrador (solo test)</option> <!-- 👈 temporal -->
+</select>
 
     <button type="submit">Registrar</button>
   </form>

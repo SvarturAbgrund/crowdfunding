@@ -51,6 +51,7 @@ if ($action === 'register') {
 
 // LOGIN
 if ($action === 'login') {
+     error_log("🟢 LOGIN ATTEMPT: " . json_encode($input)); // 👈 esto
     $email = trim($input['email'] ?? '');
     $password = trim($input['password'] ?? '');
 
@@ -62,6 +63,9 @@ if ($action === 'login') {
     $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
     $stmt->execute([$email]);
     $user = $stmt->fetch();
+
+    error_log("🔍 USER FOUND: " . json_encode($user));
+
 
     if (!$user || !password_verify($password, $user['password'])) {
         echo json_encode(["status" => "error", "msg" => "Credenciales inválidas"]);

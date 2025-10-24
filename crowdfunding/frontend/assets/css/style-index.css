@@ -32,13 +32,13 @@ body {
 .logo {
     font-size: 1.8rem;
     font-weight: bold;
-    color: #38aca2;
+    color: #1d1e79;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .logo:hover {
-    color: #2c8a82;
+    color: #195a55;
 }
 
 /* Search Bar */
@@ -60,12 +60,12 @@ body {
 }
 
 .search-bar input:focus {
-    border-color: #38aca2;
+    border-color: #1d1e79;
 }
 
 .search-bar button {
     padding: 0.8rem 1.5rem;
-    background: #38aca2;
+    background: #1d1e79;
     border: none;
     border-radius: 0 25px 25px 0;
     color: white;
@@ -74,7 +74,7 @@ body {
 }
 
 .search-bar button:hover {
-    background: #2c8a82;
+    background: #195a55;
 }
 
 /* Navigation Menu */
@@ -93,13 +93,13 @@ body {
 }
 
 .nav-menu a:hover {
-    background: #38aca2;
+    background: #1d1e79;
     color: white;
 }
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, #38aca2 0%, #2c8a82 100%);
+    background: linear-gradient(135deg, #1d1e79 0%, #195a55 100%);
     color: white;
     text-align: center;
     padding: 4rem 2rem;
@@ -118,7 +118,7 @@ body {
 
 .explore-btn {
     background: white;
-    color: #38aca2;
+    color: #1d1e79;
     border: none;
     padding: 1rem 2rem;
     font-size: 1.1rem;
@@ -212,7 +212,7 @@ body {
 }
 
 .progress div {
-    background: #38aca2;
+    background: #1d1e79;
     height: 100%;
     transition: width 0.3s ease;
 }
@@ -221,7 +221,7 @@ body {
     width: calc(100% - 2rem);
     margin: 1rem;
     padding: 0.8rem;
-    background: #38aca2;
+    background: #1d1e79;
     color: white;
     border: none;
     border-radius: 5px;
@@ -230,7 +230,7 @@ body {
 }
 
 .campaign button:hover {
-    background: #2c8a82;
+    background: #195a55;
 }
 
 /* Pagination */
@@ -252,9 +252,9 @@ body {
 
 .pagination a:hover,
 .pagination a.active {
-    background: #38aca2;
+    background: #1d1e79;
     color: white;
-    border-color: #38aca2;
+    border-color: #1d1e79;
 }
 
 /* Footer */
@@ -351,7 +351,7 @@ footer {
 }
 
 .progress {
-    background: #4CAF50;
+    background: #1d1e79;
     height: 100%;
     transition: width 0.3s ease;
 }
@@ -364,7 +364,7 @@ footer {
 }
 
 .btn {
-    background: #4CAF50;
+    background: #1d1e79;
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 4px;
