@@ -1,0 +1,115 @@
+/* style-create.css */
+
+/* --- Base y Contenedor Principal --- */
+
+body {
+    /* Fondo azul similar a la imagen de inicio de sesión */
+    background-color: #2e78c8; /* Un tono de azul vibrante */
+    color: #333; /* Color de texto principal */
+    font-family: Arial, sans-serif;
+    display: flex; /* Para centrar el contenido principal */
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- Encabezado y Logo --- */
+
+header {
+    width: 100%;
+    padding: 15px 50px;
+    background-color: rgba(255, 255, 255, 0.1); /* Ligera transparencia */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Asegurar que el header no interrumpa el centrado del main, sino que esté encima */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff; /* Logo blanco para contrastar con el fondo azul */
+    text-decoration: none;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Contenedor del Formulario (Similar al de Iniciar Sesión) --- */
+
+.form-container {
+    background-color: #fff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 450px; /* Ancho fijo para el formulario */
+    margin-top: 100px; /* Separación del header */
+    text-align: center;
+}
+
+.form-container h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+/* --- Estilos del Formulario y Elementos --- */
+
+#createCampaignForm {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+label {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+    font-size: 14px;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box; /* Asegura que padding no aumente el ancho total */
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #2e78c8; /* Resaltar al enfocar */
+    outline: none;
+}
+
+textarea {
+    resize: vertical; /* Permitir redimensionar solo verticalmente */
+}
+
+/* --- Estilo del Botón de Publicar Campaña --- */
+
+button[type="submit"] {
+    background-color: #2e78c8; /* El mismo azul que el fondo/login */
+    color: white;
+    padding: 12px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #215e9c; /* Azul más oscuro al pasar el ratón */
+}

@@ -3,27 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contacto - Crowdfunding</title>
-  <link rel="stylesheet" href="Css/styles.css">
+  <title>Formulario de Contacto</title>
+  <link rel="stylesheet" href="/crowdfunding/frontend/assets/css/style-contact.css">
 </head>
 <body>
   <header>
     <h1>Contacto</h1>
     <nav>
       <ul>
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="create_campaign.html">Crear Campaña</a></li>
-        <li><a href="profile.html">Perfil</a></li>
-        <li><a href="contact.html" class="active">Contacto</a></li>
+        <li><a href="/crowdfunding/frontend/index.html">Inicio</a></li>
+        <li><a href="#" class="active">Contacto</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <!-- Formulario de contacto -->
     <section class="form-section">
       <h2>Envíanos un mensaje</h2>
-      <form class="contact-form">
+
+      <form id="contactForm" class="contact-form">
         <label for="name">Nombre</label>
         <input type="text" id="name" placeholder="Tu nombre" required>
 
@@ -34,28 +32,26 @@
         <input type="text" id="subject" placeholder="Asunto del mensaje" required>
 
         <label for="message">Mensaje</label>
-        <textarea id="message" placeholder="Escribe tu mensaje aquí..." required></textarea>
+        <textarea id="message" placeholder="Escribe tu mensaje..." required></textarea>
 
         <button type="submit">Enviar</button>
       </form>
-    </section>
 
-    <!-- Información de contacto -->
-    <section class="contact-info">
-      <h3>Información de Contacto</h3>
-      <p>Email: soporte@crowdfunding.com</p>
-      <p>Teléfono: +52 55 1234 5678</p>
-      <p>Dirección: Calle Ficticia 123, Ciudad, País</p>
+      <p id="statusMessage" class="status"></p>
     </section>
   </main>
 
   <footer>
-    <p>© 2025 Crowdfunding Platform</p>
     <div class="socials">
-      <a href="#">Facebook</a>
-      <a href="#">Twitter</a>
-      <a href="#">Instagram</a>
-    </div>
+    <a href="#" class="facebook">Facebook</a>
+    <a href="#" class="twitter">Twitter</a>
+    <a href="#" class="instagram">Instagram</a>
+
+    <p>© 2025 Crowdfunding Platform</p>
+      
+  </div>
   </footer>
+
+  <script src="/crowdfunding/frontend/js/contact.js"></script>
 </body>
 </html>
