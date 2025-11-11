@@ -38,3 +38,24 @@ function redirectToProfile() {
     window.location.href = "index.html";
   }
 }
+
+
+  // Script para el menú hamburguesa
+
+  const menuToggle = document.getElementById('menu-toggle');
+  const navSlide = document.getElementById('nav-slide');
+
+  menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    navSlide.classList.toggle('active');
+  });
+
+  // Cerrar menú al hacer clic en un enlace (en móvil)
+  document.querySelectorAll('.nav-slide a').forEach(link => {
+    link.addEventListener('click', () => {
+      menuToggle.classList.remove('active');
+      navSlide.classList.remove('active');
+    });
+  });
+
+

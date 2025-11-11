@@ -1,168 +1,376 @@
-/* === ESTILOS GENERALES === */
+/*
+====================================
+  1. VARIABLES GLOBALES
+====================================
+*/
+:root {
+    --primary-color: #1d1e79; /* Azul oscuro */
+    --accent-color: #195a55; /* Verde azulado */
+    --text-color: #333;
+    --light-bg: #fff;
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow-deep: 0 15px 35px rgba(0, 0, 0, 0.3);
+    --header-height: 60px;
+}
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-  background: #f4f6f9;
-  color: #333;
-  line-height: 1.6;
+    background-color: var(--light-bg);
+    line-height: 1.6;
+    color: var(--text-color);
+    min-height: 100vh;
 }
 
-/* === ENCABEZADO === */
-header {
-  background: #004aad;
-  color: #fff;
-  padding: 20px 0;
-  text-align: center;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.3s;
 }
 
-header h1 {
-  font-size: 1.8rem;
-  margin-bottom: 10px;
+a:hover {
+    color: var(--accent-color);
 }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
+/*
+====================================
+  2. HEADER Y NAVEGACIÓN (RESPONSIVO)
+====================================
+*/
+
+.header {
+    background-color: var(--light-bg);
+    box-shadow: var(--shadow-light);
+    height: var(--header-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-nav ul li a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
+.logo {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--primary-color);
 }
 
-nav ul li a:hover,
-nav ul li a.active {
-  color: #ffd700;
+/* --- Ícono Hamburguesa --- */
+.menu-toggle {
+    display: none; /* Oculto por defecto en desktop */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 1100;
 }
 
-/* === SECCIÓN FORMULARIO === */
-.form-section {
-  max-width: 700px;
-  margin: 40px auto;
-  background: #fff;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+.menu-toggle .bar {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: var(--primary-color);
+    border-radius: 5px;
+    transition: all 0.3s ease;
 }
 
-.form-section h2 {
-  text-align: center;
-  color: #004aad;
-  margin-bottom: 20px;
+/* Animación de "X" cuando está activo */
+.menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+}
+.menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg);
 }
 
+/* --- Menú de Navegación (Desktop) --- */
+.nav-slide ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+}
+
+.nav-slide li {
+    margin-left: 25px;
+}
+
+.nav-slide a {
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.nav-slide a.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+.nav-slide a:not(.active):hover {
+    background-color: #f0f0f0;
+}
+
+/*
+====================================
+  3. SECCIÓN HERO DE CONTACTO
+====================================
+*/
+.contact-hero {
+    /* Fondo degradado similar al de la imagen */
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.contact-hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.contact-hero p {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+/*
+====================================
+  4. CONTENEDOR PRINCIPAL (FORMULARIO E INFO)
+====================================
+*/
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 0 20px; /* Padding horizontal para móviles */
+    gap: 40px;
+}
+
+/* --- Formulario --- */
 .contact-form {
-  display: flex;
-  flex-direction: column;
+    flex: 2; /* Ocupa más espacio que la información */
+    background: var(--light-bg);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: var(--shadow-light);
+    height: fit-content;
+}
+
+.contact-form h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 25px;
 }
 
 .contact-form label {
-  font-weight: 600;
-  margin: 10px 0 5px;
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    margin-top: 15px;
+    color: var(--text-color);
 }
 
 .contact-form input,
 .contact-form textarea {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  outline: none;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  font-size: 1rem;
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-  border-color: #004aad;
-  box-shadow: 0 0 5px rgba(0, 74, 173, 0.4);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(29, 30, 121, 0.2);
 }
 
 .contact-form textarea {
-  min-height: 120px;
-  resize: vertical;
+    resize: vertical;
+    min-height: 120px;
 }
 
 .contact-form button {
-  margin-top: 20px;
-  padding: 12px;
-  background: #004aad;
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s;
+    width: 100%;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    margin-top: 25px;
 }
 
 .contact-form button:hover {
-  background: #00337a;
-  transform: translateY(-2px);
+    background: var(--accent-color);
+    transform: translateY(-1px);
 }
 
-/* === INFORMACIÓN DE CONTACTO === */
+/* --- Información de Contacto --- */
 .contact-info {
-  text-align: center;
-  margin: 40px auto;
-  padding: 20px;
-  background: #e8f0fe;
-  border-radius: 10px;
-  max-width: 600px;
-  box-shadow: 0 4px 10px rgba(0, 74, 173, 0.1);
+    flex: 1; /* Ocupa menos espacio */
+    padding: 30px;
+    background-color: #f7f7f7; /* Fondo ligeramente gris */
+    border-radius: 10px;
+    height: fit-content;
 }
 
 .contact-info h3 {
-  color: #004aad;
-  margin-bottom: 10px;
+    color: var(--primary-color);
+    font-size: 1.4rem;
+    margin-bottom: 25px;
 }
 
 .contact-info p {
-  margin: 6px 0;
-  font-size: 1rem;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    line-height: 1.4;
 }
 
-/* === PIE DE PÁGINA === */
+.contact-info strong {
+    margin-right: 8px;
+    color: var(--primary-color);
+}
+
+
+/*
+====================================
+  5. FOOTER
+====================================
+*/
 footer {
-  background: #004aad;
-  color: #fff;
-  text-align: center;
-  padding: 20px 0;
-  margin-top: 40px;
+    background-color: #222;
+    color: #ccc;
+    padding: 20px 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-footer p {
-  margin-bottom: 10px;
+footer a {
+    color: #ccc;
+    margin-left: 15px;
 }
 
-footer .socials a {
-  color: #fff;
-  text-decoration: none;
-  margin: 0 10px;
-  transition: color 0.3s;
+footer a:hover {
+    color: var(--accent-color);
 }
 
-footer .socials a:hover {
-  color: #ffd700;
+/*
+====================================
+  6. MEDIA QUERIES (RESPONSIVIDAD)
+====================================
+*/
+
+/* Tablet y Móvil (menos de 850px) */
+@media (max-width: 850px) {
+    /* --- Main Content: Se apila --- */
+    .contact-container {
+        flex-direction: column;
+        margin-top: 30px;
+    }
+    
+    .contact-form,
+    .contact-info {
+        flex: auto; /* Ambos ocupan el 100% del ancho */
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .contact-hero h2 {
+        font-size: 2rem;
+    }
 }
 
-/* === RESPONSIVE === */
-@media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
-    gap: 10px;
-  }
+/* Móvil (menos de 600px) */
+@media (max-width: 600px) {
+    /* --- Header: Muestra Hamburguesa --- */
+    .menu-toggle {
+        display: flex;
+    }
 
-  .form-section, .contact-info {
-    margin: 20px;
-    padding: 20px;
-  }
+    .nav-slide {
+        /* Estado inicial del menú lateral (fuera de la pantalla) */
+        position: absolute;
+        top: var(--header-height);
+        right: 0;
+        width: 70%;
+        height: auto;
+        background-color: var(--light-bg);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        transform: translateX(100%);
+        transition: transform 0.3s ease-out;
+    }
+    
+    /* Estado activo del menú lateral */
+    .nav-slide.active {
+        transform: translateX(0);
+    }
+    
+    .nav-slide ul {
+        flex-direction: column;
+        padding: 15px 0;
+    }
+    
+    .nav-slide li {
+        margin: 0;
+        width: 100%;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .nav-slide li:last-child {
+        border-bottom: none;
+    }
+
+    .nav-slide a {
+        display: block;
+        padding: 12px 20px;
+        color: var(--text-color);
+        border-radius: 0;
+    }
+    
+    .nav-slide a.active {
+        background-color: var(--primary-color);
+        color: white;
+    }
+    
+    /* --- Contenido --- */
+    .contact-form,
+    .contact-info {
+        padding: 20px;
+    }
+
+    .contact-hero {
+        padding: 30px 15px;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    footer .socials {
+        text-align: center;
+    }
+    footer a {
+        margin: 0 8px;
+    }
 }

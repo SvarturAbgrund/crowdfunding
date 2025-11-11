@@ -1,57 +1,73 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formulario de Contacto</title>
-  <link rel="stylesheet" href="/crowdfunding/frontend/assets/css/style-contact.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto - Crowdfunding</title>
+  <link rel="stylesheet" href="/crowdfunding/frontend/assets/css/style-contact.css" />
 </head>
 <body>
-  <header>
-    <h1>Contacto</h1>
-    <nav>
+  <header class="header">
+    <a href="/crowdfunding/index.html" class="logo">Crowdfunding</a>
+
+
+    <div class="menu-toggle" id="menu-toggle">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+
+    <nav class="nav-slide" id="nav-slide">
       <ul>
         <li><a href="/crowdfunding/frontend/index.html">Inicio</a></li>
-        <li><a href="#" class="active">Contacto</a></li>
+        <li><a href="create_campaign.html">Crear Campaña</a></li>
+        <li><a href="profile.html">Perfil</a></li>
+        <li><a href="contact.html" class="active">Contacto</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <section class="form-section">
-      <h2>Envíanos un mensaje</h2>
+  <section class="contact-hero">
+    <h2>Contáctanos</h2>
+    <p>¿Tienes alguna pregunta o necesitas ayuda? Envíanos un mensaje y te responderemos pronto.</p>
+  </section>
 
-      <form id="contactForm" class="contact-form">
-        <label for="name">Nombre</label>
-        <input type="text" id="name" placeholder="Tu nombre" required>
+  <main class="contact-container">
+    <form class="contact-form" id="contactForm">
+      <h3>Formulario de contacto</h3>
 
-        <label for="email">Correo electrónico</label>
-        <input type="email" id="email" placeholder="tu@correo.com" required>
+      <label for="name">Nombre</label>
+      <input type="text" id="name" placeholder="Tu nombre" required />
 
-        <label for="subject">Asunto</label>
-        <input type="text" id="subject" placeholder="Asunto del mensaje" required>
+      <label for="email">Correo electrónico</label>
+      <input type="email" id="email" placeholder="tu@correo.com" required />
 
-        <label for="message">Mensaje</label>
-        <textarea id="message" placeholder="Escribe tu mensaje..." required></textarea>
+      <label for="subject">Asunto</label>
+      <input type="text" id="subject" placeholder="Asunto del mensaje" required />
 
-        <button type="submit">Enviar</button>
-      </form>
+      <label for="message">Mensaje</label>
+      <textarea id="message" placeholder="Escribe tu mensaje aquí..." required></textarea>
 
-      <p id="statusMessage" class="status"></p>
-    </section>
+      <button type="submit">Enviar mensaje</button>
+    </form>
+
+    <div class="contact-info">
+      <h3>Información de contacto</h3>
+      <p><strong>📧 Correo:</strong> soporte@crowdfund.com</p>
+      <p><strong>📞 Teléfono:</strong> +52 55 1234 5678</p>
+      <p><strong>📍 Dirección:</strong> Calle Ficticia 123, Ciudad, México</p>
+    </div>
   </main>
 
   <footer>
-    <div class="socials">
-    <a href="#" class="facebook">Facebook</a>
-    <a href="#" class="twitter">Twitter</a>
-    <a href="#" class="instagram">Instagram</a>
-
     <p>© 2025 Crowdfunding Platform</p>
-      
-  </div>
+    <div class="socials">
+      <a href="#">Facebook</a>
+      <a href="#">Twitter</a>
+      <a href="#">Instagram</a>
+    </div>
   </footer>
 
-  <script src="/crowdfunding/frontend/js/contact.js"></script>
+  <script src="/crowdfunding/frontend/js/auth.js"></script>
 </body>
 </html>
