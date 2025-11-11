@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Registro / Inicio de Sesión</title>
-  <link rel="stylesheet" href="../assets/css/style-index.css">
+  <link rel="stylesheet" href="../assets/css/style-login.css">
   <script src="../js/auth.js" defer></script>
 </head>
 <body>
@@ -26,6 +26,7 @@
 </select>
 
     <button type="submit">Registrar</button>
+        <p class="switch">¿Ya tienes cuenta? <a href="#" id="showLogin">Inicia sesión</a></p>
   </form>
 
   <hr>
@@ -35,6 +36,8 @@
     <input type="email" id="email_login" placeholder="Correo" required>
     <input type="password" id="password_login" placeholder="Contraseña" required>
     <button type="submit">Entrar</button>
+        <p class="switch">¿No tienes cuenta? <a href="#" id="showRegister">Regístrate</a></p>
   </form>
+  
 </body>
 </html>
