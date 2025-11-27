@@ -4,10 +4,9 @@ require_once __DIR__ . '/../models/Donation.php';
 require_once __DIR__ . '/../auth/helpers.php';
 require_login();
 
-// Asegurar columnas delivered en donations
-$db = DB::get();
-$col = $db->query("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='donations' AND COLUMN_NAME='delivered'")->fetch_assoc();
-if(!$col){ @ $db->query('ALTER TABLE donations ADD COLUMN delivered TINYINT(1) DEFAULT 0, ADD COLUMN delivered_at DATETIME DEFAULT NULL'); }
+// Asegurar tabla/columnas en modelo (migración leve)
+require_once __DIR__ . '/../models/Donation.php';
+Donation::ensureTable();
 
 // Mostrar y marcar entregas. Admin puede ver todo; emprendedor ve solo sus campañas' donaciones
 if($_SESSION['user']['role'] === 'admin'){

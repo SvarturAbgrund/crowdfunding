@@ -23,6 +23,14 @@ class Message {
         return $res->fetch_all(MYSQLI_ASSOC);
     }
 
+    public static function create($name, $email, $subject, $message){
+        $db = DB::get();
+        self::ensureTable();
+        $stmt = $db->prepare('INSERT INTO messages (name,email,subject,message) VALUES (?,?,?,?)');
+        $stmt->bind_param('ssss', $name, $email, $subject, $message);
+        return $stmt->execute();
+    }
+
     public static function delete($id){
         $db = DB::get();
         $stmt = $db->prepare('DELETE FROM messages WHERE id = ?');

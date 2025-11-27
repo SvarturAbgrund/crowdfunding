@@ -40,6 +40,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
       <button type="submit" class="btn-primary">Entrar</button>
     </form>
     <p class="login-footer">¿No tienes cuenta? <a href="/crowdfunding1/auth/register.php">Regístrate aquí</a></p>
+    <p class="login-footer"><a href="/crowdfunding1/auth/password_request.php">¿Olvidaste tu contraseña?</a></p>
   </div>
 </div>
 

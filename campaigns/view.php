@@ -28,6 +28,14 @@ if(!empty($_SESSION['success'])){ echo '<p style="color:green">'.htmlspecialchar
 <h2><?=htmlspecialchars($camp['title'])?></h2>
 <p><?=nl2br(htmlspecialchars($camp['description']))?></p>
 <p><strong>Meta:</strong> <?=number_format($camp['goal_amount'],2)?> | <strong>Recaudado:</strong> <?=number_format($camp['pledged_amount'],2)?></p>
+<!-- Progress bar -->
+<div class="progress-wrapper" data-campaign-id="<?=$camp['id']?>">
+  <div class="progress-track" style="background:#f1f5f9;border-radius:8px;height:18px;overflow:hidden;">
+    <?php $pct = $camp['goal_amount']>0 ? min(100,($camp['pledged_amount']/$camp['goal_amount'])*100) : 0; ?>
+    <div class="progress-fill" style="width:<?=intval($pct)?>%;background:linear-gradient(90deg,#0052CC,#E74C3C);height:100%;transition:width 600ms ease;"></div>
+  </div>
+  <div class="progress-meta"><small><span class="pledged-display"><?=number_format($camp['pledged_amount'],2)?></span> recaudado de <span class="goal-display"><?=number_format($camp['goal_amount'],2)?></span> (<span class="pct-display"><?=intval($pct)?></span>%)</small></div>
+</div>
 <h3>Recompensas</h3>
 <?php if(empty($rewards)): ?><p>No hay recompensas para esta campaña.</p><?php else: ?>
   <ul>
@@ -43,6 +51,70 @@ if(!empty($_SESSION['success'])){ echo '<p style="color:green">'.htmlspecialchar
   <?php endforeach; ?>
   </ul>
 <?php endif; ?>
+<!-- Comments section -->
+<section id="comments">
+  <h3>Comentarios</h3>
+  <div id="comments-list">
+    <?php require_once __DIR__ . '/../models/Comment.php';
+    $comments = Comment::listByCampaign($id);
+    foreach($comments as $cm): ?>
+      <div class="comment"><strong><?=htmlspecialchars($cm['author'])?></strong> <small><?=htmlspecialchars($cm['created_at'])?></small><p><?=nl2br(htmlspecialchars($cm['content']))?></p></div>
+    <?php endforeach; ?>
+  </div>
+  <?php if(!empty($_SESSION['user'])): ?>
+    <form id="comment-form">
+      <input type="hidden" name="campaign_id" value="<?=$id?>">
+      <textarea name="content" rows="3" placeholder="Escribe tu comentario..." required></textarea>
+      <button type="submit" class="btn-primary">Comentar</button>
+    </form>
+  <?php else: ?>
+    <p>Debes <a href="/crowdfunding1/auth/login.php">iniciar sesión</a> para comentar.</p>
+  <?php endif; ?>
+</section>
+
+<script>
+// Poll campaign status every 5s and update progress
+(function(){
+  const wrapper = document.querySelector('.progress-wrapper');
+  if(!wrapper) return;
+  const id = wrapper.getAttribute('data-campaign-id');
+  function refresh(){
+    fetch('/crowdfunding1/api/campaign_status.php?id='+encodeURIComponent(id))
+      .then(r=>r.json()).then(j=>{
+        if(!j.ok) return;
+        const pledged = parseFloat(j.pledged_amount);
+        const goal = parseFloat(j.goal_amount);
+        const pct = goal>0?Math.min(100,Math.round((pledged/goal)*100)):0;
+        const fill = wrapper.querySelector('.progress-fill');
+        const pctEl = wrapper.querySelector('.pct-display');
+        const pledgedEl = wrapper.querySelector('.pledged-display');
+        if(fill) fill.style.width = pct + '%';
+        if(pctEl) pctEl.textContent = pct;
+        if(pledgedEl) pledgedEl.textContent = pledged.toFixed(2);
+      }).catch(()=>{});
+  }
+  setInterval(refresh,5000);
+  document.addEventListener('DOMContentLoaded', refresh);
+
+  // Comment form submit via AJAX
+  const cform = document.getElementById('comment-form');
+  if(cform){
+    cform.addEventListener('submit', function(e){
+      e.preventDefault();
+      const data = new FormData(cform);
+      fetch('/crowdfunding1/campaigns/add_comment.php',{method:'POST',body:data,credentials:'same-origin'})
+        .then(r=>r.json()).then(j=>{
+          if(!j.ok){ alert(j.msg || 'Error'); return; }
+          const list = document.getElementById('comments-list');
+          const div = document.createElement('div'); div.className='comment';
+          div.innerHTML = '<strong>'+ (j.author||'') +'</strong> <small>'+j.created_at+'</small><p>'+ (j.content||'') +'</p>';
+          list.insertBefore(div, list.firstChild);
+          cform.querySelector('textarea').value='';
+        }).catch(()=>{ alert('Error al enviar comentario'); });
+    });
+  }
+})();
+</script>
 <?php if(!empty($_SESSION['user']) && $_SESSION['user']['role'] === 'inversionista' && !$is_owner): ?>
   <h3>Donar</h3>
   <form method="post" action="/crowdfunding1/donate.php">
@@ -54,7 +126,7 @@ if(!empty($_SESSION['success'])){ echo '<p style="color:green">'.htmlspecialchar
 <?php elseif(empty($_SESSION['user'])): ?>
   <p>Debes <a href="/crowdfunding1/auth/login.php">iniciar sesión</a> para donar.</p>
 <?php elseif($is_owner): ?>
-  <p><em>No puedes donar a tu propia campaña.</em></p>
+  <p><em>Solo inversionistas pueden donar.</em></p>
 <?php elseif($_SESSION['user']['role'] === 'emprendedor'): ?>
   <p><em>Solo los inversores pueden donar. Cambia tu tipo de cuenta para hacerlo.</em></p>
 <?php endif; ?>

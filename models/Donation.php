@@ -2,6 +2,23 @@
 require_once __DIR__ . '/Db.php';
 
 class Donation {
+        public static function ensureTable(){
+                $db = DB::get();
+                $db->query("CREATE TABLE IF NOT EXISTS donations (
+                    id INT AUTO_INCREMENT PRIMARY KEY,
+                    campaign_id INT NOT NULL,
+                    user_id INT NOT NULL,
+                    amount DECIMAL(12,2) DEFAULT 0,
+                    reward_id INT DEFAULT NULL,
+                    payment_status VARCHAR(50) DEFAULT 'pending',
+                    delivered TINYINT(1) DEFAULT 0,
+                    delivered_at DATETIME DEFAULT NULL,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY (campaign_id) REFERENCES campaigns(id) ON DELETE CASCADE,
+                    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+                )");
+        }
+
     public static function create($campaign_id, $user_id, $amount, $reward_id = null){
         $db = DB::get();
         if($reward_id){

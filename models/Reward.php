@@ -2,6 +2,20 @@
 require_once __DIR__ . '/Db.php';
 
 class Reward {
+        public static function ensureTable(){
+                $db = DB::get();
+                $db->query("CREATE TABLE IF NOT EXISTS rewards (
+                    id INT AUTO_INCREMENT PRIMARY KEY,
+                    campaign_id INT NOT NULL,
+                    title VARCHAR(255),
+                    amount DECIMAL(12,2) DEFAULT 0,
+                    description TEXT DEFAULT NULL,
+                    quantity INT DEFAULT NULL,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY (campaign_id) REFERENCES campaigns(id) ON DELETE CASCADE
+                )");
+        }
+
     public static function find($id){
         $db = DB::get();
         $stmt = $db->prepare('SELECT * FROM rewards WHERE id = ? LIMIT 1');

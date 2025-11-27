@@ -1,12 +1,13 @@
 <?php
 require_once __DIR__ . '/../models/Db.php';
 require_once __DIR__ . '/../models/Campaign.php';
+require_once __DIR__ . '/../models/Category.php';
 require_once __DIR__ . '/../auth/helpers.php';
 
 $q = trim($_GET['q'] ?? '');
 $cat = $_GET['category'] ?? '';
 $res = Campaign::search($q, $cat);
-$cats = DB::get()->query('SELECT * FROM categories')->fetch_all(MYSQLI_ASSOC);
+$cats = Category::listAll();
 ?>
 <?php require_once __DIR__ . '/../includes/header.php'; ?>
 <h2>Proyectos</h2>

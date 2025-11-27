@@ -12,12 +12,9 @@ if($_SESSION['user']['role'] !== 'admin' && !owns_campaign(DB::get(), $campaign_
     http_response_code(403); die('Acceso denegado.');
 }
 
-// Asegurar que la columna `quantity` exista (intentar ALTER si no existe)
-$db = DB::get();
-$col = $db->query("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='rewards' AND COLUMN_NAME='quantity'")->fetch_assoc();
-if(!$col){
-    @ $db->query('ALTER TABLE rewards ADD COLUMN quantity INT DEFAULT NULL');
-}
+// Asegurar que la tabla/recompensas y columna existan (modelo se encarga)
+require_once __DIR__ . '/../models/Reward.php';
+Reward::ensureTable();
 
 $errors = [];
 // Crear/editar

@@ -41,14 +41,12 @@ function logout(){
 }
 
 function owns_campaign($db, $campaign_id){
+    // Backwards-compatible wrapper: prefer Campaign::isOwner
     if(!is_logged_in()) return false;
-    $stmt = $db->prepare('SELECT user_id FROM campaigns WHERE id = ? LIMIT 1');
-    $stmt->bind_param('i', $campaign_id);
-    $stmt->execute();
-    $res = $stmt->get_result();
-    if($row = $res->fetch_assoc()){
-        return ((int)$row['user_id'] === (int)$_SESSION['user']['id']);
-    }
-    return false;
+    require_once __DIR__ . '/../models/Campaign.php';
+    return 
+        isset($_SESSION['user']['id']) && 
+        
+        Campaign::isOwner($campaign_id, $_SESSION['user']['id']);
 }
 ?>

@@ -82,4 +82,13 @@ class Campaign {
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
+
+    public static function isOwner($campaign_id, $user_id){
+        $db = DB::get();
+        $stmt = $db->prepare('SELECT user_id FROM campaigns WHERE id = ? LIMIT 1');
+        $stmt->bind_param('i', $campaign_id);
+        $stmt->execute();
+        $row = $stmt->get_result()->fetch_assoc();
+        return $row && ((int)$row['user_id'] === (int)$user_id);
+    }
 }

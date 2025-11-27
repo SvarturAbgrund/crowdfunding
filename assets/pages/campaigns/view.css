@@ -276,3 +276,11 @@ label {
     padding: 20px 12px;
   }
 }
+
+/* Progress bar & comments */
+.progress-wrapper { margin: 18px 0 28px 0; }
+.progress-meta { margin-top: 8px; color: #374151; }
+.comment { background: #fff; border: 1px solid #e6eefb; padding: 12px; border-radius: 8px; margin-bottom: 12px; }
+#comments-list { margin-bottom: 12px; }
+#comment-form textarea { width:100%; padding:10px; border-radius:6px; border:1px solid #e5e7eb; }
+#comment-form button { margin-top:8px; }

@@ -31,4 +31,12 @@ class User {
         $stmt->execute();
         return $stmt->get_result()->fetch_assoc();
     }
+
+    public static function updatePassword($user_id, $newPassword){
+        $db = DB::get();
+        $hash = password_hash($newPassword, PASSWORD_DEFAULT);
+        $stmt = $db->prepare('UPDATE users SET password = ? WHERE id = ?');
+        $stmt->bind_param('si', $hash, $user_id);
+        return $stmt->execute();
+    }
 }
