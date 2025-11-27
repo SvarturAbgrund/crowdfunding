@@ -2,10 +2,21 @@
 session_start();
 require_once __DIR__ . '/../models/Campaign.php';
 require_once __DIR__ . '/../models/Reward.php';
+require_once __DIR__ . '/../auth/helpers.php';
 
 $id = intval($_GET['id'] ?? 0);
 $camp = Campaign::get($id);
 if(!$camp) die('Campaña no encontrada');
+
+// Validar permisos de visibilidad
+$is_owner = !empty($_SESSION['user']) && (int)$_SESSION['user']['id'] === (int)$camp['user_id'];
+$is_admin = !empty($_SESSION['user']) && $_SESSION['user']['role'] === 'admin';
+
+// Solo owner, admin, o si está approved pueden verla
+if($camp['status'] !== 'approved' && !$is_owner && !$is_admin) {
+    die('Acceso denegado. Esta campaña no es pública.');
+}
+
 $rewards = Reward::findByCampaign($id);
 ?>
 <?php require_once __DIR__ . '/../includes/header.php'; ?>
@@ -32,7 +43,7 @@ if(!empty($_SESSION['success'])){ echo '<p style="color:green">'.htmlspecialchar
   <?php endforeach; ?>
   </ul>
 <?php endif; ?>
-<?php if(!empty($_SESSION['user'])): ?>
+<?php if(!empty($_SESSION['user']) && $_SESSION['user']['role'] === 'inversionista' && !$is_owner): ?>
   <h3>Donar</h3>
   <form method="post" action="/crowdfunding1/donate.php">
     <input type="hidden" name="campaign_id" value="<?=$camp['id']?>">
@@ -40,8 +51,12 @@ if(!empty($_SESSION['success'])){ echo '<p style="color:green">'.htmlspecialchar
     <label>Recompensa (opcional): <select name="reward_id"><option value="">Ninguna</option><?php foreach($rewards as $r): ?><?php $qty = array_key_exists('quantity', $r) ? $r['quantity'] : null; ?><option value="<?=$r['id']?>" <?=(($qty !== null && intval($qty)<=0)?'disabled':'')?>><?=htmlspecialchars($r['title'])?> - <?=number_format($r['amount'],2)?><?=($qty !== null)?' ('.intval($qty).' left)':''?></option><?php endforeach; ?></select></label><br>
     <button>Donar</button>
   </form>
-<?php else: ?>
+<?php elseif(empty($_SESSION['user'])): ?>
   <p>Debes <a href="/crowdfunding1/auth/login.php">iniciar sesión</a> para donar.</p>
+<?php elseif($is_owner): ?>
+  <p><em>No puedes donar a tu propia campaña.</em></p>
+<?php elseif($_SESSION['user']['role'] === 'emprendedor'): ?>
+  <p><em>Solo los inversores pueden donar. Cambia tu tipo de cuenta para hacerlo.</em></p>
 <?php endif; ?>
 <?php if(!empty($_SESSION['user']) && ($_SESSION['user']['role']==='admin' || $_SESSION['user']['id']==$camp['user_id'])): ?>
   <p>

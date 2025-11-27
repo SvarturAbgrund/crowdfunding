@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../models/Db.php';
 require_once __DIR__ . '/../models/Campaign.php';
-session_start();
+require_once __DIR__ . '/../auth/helpers.php';
 
 $q = trim($_GET['q'] ?? '');
 $cat = $_GET['category'] ?? '';

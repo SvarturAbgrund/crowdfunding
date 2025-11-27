@@ -19,11 +19,24 @@ if(empty($_SESSION['user'])){
     flash('error','Debes iniciar sesión para donar.');
     header('Location: /crowdfunding1/auth/login.php'); exit;
 }
+if($_SESSION['user']['role'] !== 'inversionista'){
+    flash('error','Solo inversores pueden donar a campañas.');
+    header('Location: /crowdfunding1/'); exit;
+}
 if($_SERVER['REQUEST_METHOD'] !== 'POST'){
     flash('error','Método inválido');
     header('Location: /crowdfunding1/'); exit;
 }
 $campaign_id = intval($_POST['campaign_id']);
+$camp = Campaign::get($campaign_id);
+if(!$camp){
+    flash('error','Campaña no encontrada');
+    header('Location: /crowdfunding1/'); exit;
+}
+if((int)$camp['user_id'] === (int)$_SESSION['user']['id']){
+    flash('error','No puedes donar a tu propia campaña.');
+    header('Location: /crowdfunding1/campaigns/view.php?id='.$campaign_id); exit;
+}
 $amount = floatval($_POST['amount']);
 $reward_id = !empty($_POST['reward_id']) ? intval($_POST['reward_id']) : null;
 if($amount <= 0){

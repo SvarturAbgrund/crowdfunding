@@ -1,0 +1,3 @@
+/* Page-specific CSS: admin/install.php */
+.install-wrapper { max-width:720px; margin:36px auto; padding:18px; background:#fff; border-radius:8px; }
+.btn-primary { background:#2b6cb0; color:#fff; padding:8px 12px; border-radius:6px; border:none; }

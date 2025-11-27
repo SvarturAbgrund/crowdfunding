@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once __DIR__ . '/../models/Db.php';
 require_once __DIR__ . '/../models/User.php';
 require_once __DIR__ . '/../models/Logger.php';
 require_once __DIR__ . '/helpers.php';
@@ -20,13 +20,27 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $error = 'Credenciales inválidas';
 }
 ?>
-<!doctype html>
-<html><head><meta charset="utf-8"><title>Login</title></head><body>
-<h2>Login</h2>
-<?php if($error): ?><p style="color:red"><?=htmlspecialchars($error)?></p><?php endif; ?>
-<form method="post">
-  <label>Email: <input type="email" name="email" required></label><br>
-  <label>Password: <input type="password" name="password" required></label><br>
-  <button>Entrar</button>
-</form>
-</body></html>
+<?php require_once __DIR__ . '/../includes/header.php'; ?>
+
+<div class="login-container">
+  <div class="login-card">
+    <h2>Inicia Sesión</h2>
+    <?php if($error): ?>
+      <div class="error-message"><?=htmlspecialchars($error)?></div>
+    <?php endif; ?>
+    <form method="post">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <button type="submit" class="btn-primary">Entrar</button>
+    </form>
+    <p class="login-footer">¿No tienes cuenta? <a href="/crowdfunding1/auth/register.php">Regístrate aquí</a></p>
+  </div>
+</div>
+
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>

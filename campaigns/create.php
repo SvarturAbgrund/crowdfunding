@@ -3,10 +3,10 @@ require_once __DIR__ . '/../models/Db.php';
 require_once __DIR__ . '/../models/Campaign.php';
 require_once __DIR__ . '/../models/Category.php';
 require_once __DIR__ . '/../models/Logger.php';
-session_start();
-if(empty($_SESSION['user']) || $_SESSION['user']['role'] !== 'emprendedor'){
-    die('Acceso denegado. Solo emprendedores.');
-}
+require_once __DIR__ . '/../auth/helpers.php';
+
+require_login();
+require_role('emprendedor');
 $cats = Category::listAll();
 $errors = [];
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
